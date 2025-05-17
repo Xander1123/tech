@@ -1,0 +1,309 @@
+{% load static %}
+{% load i18n %}
+
+<!DOCTYPE html>
+<html lang="az">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Fixbit - Texniki dəstək xidmətləri, kompüter təmiri, proqram təminatı və təhlükəsizlik kameralarının quraşdırılması.">
+    <meta name="keywords"
+        content="Texniki dəstək, kompüter təmiri, proqram təminatı, təhlükəsizlik kameraları, IT xidmətləri">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/Elaqe.css' %}">
+    <link rel="stylesheet" href="{% static 'css/faq.css' %}">
+    <link rel="stylesheet" href="{% static 'css/footer.css' %}">
+    <link rel="stylesheet" href="{% static 'css/hero.css' %}">
+    <link rel="stylesheet" href="{% static 'css/navbar.css' %}">
+    <link rel="stylesheet" href="{% static 'css/contact.css' %}">
+    <link rel="stylesheet" href="{% static 'css/map.css' %}">
+    <link rel="stylesheet" href="{% static 'css/services.css' %}">
+    <link rel="shortcut icon" href="{% static 'images/favicon.ico' %}" type="image/x-icon">
+
+    <title>Fixbit | Technical support </title>
+</head>
+
+<body>
+    <!-- Top Bar -->
+    <div class="compact-top-bar">
+        <div class="left-section">
+            <p class="phone-number">📞 +994 10 209 08 88</p>
+        </div>
+        <div class="right-section">
+            <a href="#" class="lang-link" data-lang="az"><img src="{% static 'Images/azerbaijan.png' %}"
+                    alt="AZ">AZE</a>
+            <a href="#" class="lang-link" data-lang="ru"><img src="{% static 'Images/russia.png' %}" alt="RU">RUS</a>
+            <a href="#" class="lang-link" data-lang="en"><img src="{% static 'Images/united-states.png' %}"
+                    alt="EN">ENG</a>
+        </div>
+
+    </div>
+
+    <!-- Navbar -->
+    <header class="navbar">
+        <div class="logo">
+            <a href="{% url 'home' %}">
+                <img src="{% static 'Images/fixbit sozu.png' %}" alt="Logo">
+            </a>
+        </div>
+
+        <!-- Hamburger Icon -->
+        <div class="hamburger" id="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+
+        <nav id="nav">
+            <ul>
+                <li>
+                    <a href="{% url 'home' %}">
+                        <img src="{% static 'Images/home.png' %}" alt="{% trans 'Əsas Səhifə İkonu' %}"
+                            class="nav-icon">
+                        {% trans 'Əsas Səhifə' %}
+                    </a>
+                </li>
+                <li>
+                    <a href="{% url 'services' %}">
+                        <img src="{% static 'Images/maintenance.png' %}" alt="{% trans 'Xidmətlər İkonu' %}"
+                            class="nav-icon">
+                        {% trans 'Xidmətlər' %}
+                    </a>
+                </li>
+                <li>
+                    <a href="{% url 'questions' %}">
+                        <img src="{% static 'Images/conversation.png' %}" alt="{% trans 'Suallar İkonu' %}"
+                            class="nav-icon">
+                        {% trans 'Suallar' %}
+                    </a>
+                </li>
+                <li>
+                    <a href="{% url 'contact' %}">
+                        <img src="{% static 'Images/phone.png' %}" alt="{% trans 'Əlaqə İkonu' %}" class="nav-icon">
+                        {% trans 'Əlaqə' %}
+                    </a>
+                </li>
+            </ul>
+        </nav>
+
+    </header>
+
+
+
+
+
+    <section class="hero {% if background_image_url %}hero-with-bg{% endif %}" data-bg="{{ background_image_url }}">
+        <div class="overlay"></div> <!-- Bu yeni qat -->
+        <div class="hero-content">
+            {% if hero_section %}
+            <h1>{{ hero_section.title }}</h1>
+            <p>{{ hero_section.description }}</p>
+            <a href="{{ hero_section.button_url }}" class="hero-btn">{{ hero_section.button_text }}</a>
+            {% else %}
+            <h1>Xidmətlərimizlə Tanış Olun</h1>
+            <p>Bizimlə texniki dəstək alın və problemlərinizi həll edin!</p>
+            <a href="#services" class="hero-btn">Ətraflı</a>
+            {% endif %}
+        </div>
+    </section>
+
+
+    <section class="services-section">
+        <h2 class="section-title">{% trans "Xidmətlərimiz" %}</h2>
+        <div class="services-grid">
+            {% for service in services %}
+            <div class="service-card" style="background-image: url('{{ service.image.url }}');">
+                <div class="overlay">
+                    <h3>{{ service.name }}</h3>
+                    <p>{{ service.description }}</p>
+                    <a href="https://wa.me/0102090888?text=Salam%2C%20sizdən%20xidmət%20almaq%20istəyirəm."
+                        class="hero-btn" target="_blank">
+                        {% trans "Daha Ətraflı" %}
+                    </a>
+                </div>
+            </div>
+            {% empty %}
+            <p>{% trans "Hələ heç bir xidmət əlavə edilməmişdir." %}</p> {% endfor %}
+        </div>
+    </section>
+
+
+    <!-- faq -->
+    <section class="faq-section">
+        <h2>{% trans "Ən Çox Verilən Suallar" %}</h2>
+        <div class="faq-container">
+            <div class="faq-categories">
+                <ul>
+                    {% for category in faq_categories %}
+                    <li>
+                        <a href="#category-{{ category.id }}"
+                            class="category-link {% if forloop.first %}active{% endif %}"
+                            data-category="{{ category.id }}">
+                            {{ category.name }}
+                        </a>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+
+            <div class="faq-questions">
+                {% for category in faq_categories %}
+                <div id="category-{{ category.id }}" class="faq-category {% if not forloop.first %}hidden{% endif %}">
+                    {% if category.active_faqs %}
+                    {% for question in category.active_faqs %}
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            {% if forloop.first and category.name == "Texniki Problemlər" %}
+                            Bu çox uzun bir sualdır ki, burada sözlər çoxdur və bir sətirdə yerləşmir, ona görə də aşağı
+                            düşüb yeni sətirdən davam etməlidir.
+                            {% else %}
+                            {{ question.question }}
+                            {% endif %}
+                            <span class="toggle-icon">+</span>
+                        </div>
+                        <div class="faq-answer">
+                            {% if forloop.first and category.name == "Texniki Problemlər" %}
+                            Bu bir cavabdır.
+                            {% else %}
+                            {{ question.answer }}
+                            {% endif %}
+                        </div>
+                    </div>
+                    {% endfor %}
+                    {% else %}
+                    <p class="no-questions">{% trans "Bu kateqoriyada suallar yoxdur." %}</p>
+                    {% endif %}
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+
+
+
+
+    <section class="contact-section">
+        <h2>{% trans "Bizimlə Əlaqə" %}</h2>
+        <div class="contact-cards">
+            <!-- WhatsApp -->
+            <div class="contact-card">
+                <img src="{% static 'Images/whatsapp (1).png' %}" alt="WhatsApp">
+                <h3>{% trans "WhatsApp" %}</h3>
+                <p>{% trans "Bizimlə WhatsApp üzərindən birbaşa əlaqə saxlayın." %}</p>
+                <a href="https://wa.me/994102090888" target="_blank">{% trans "Əlaqə Saxla" %}</a>
+            </div>
+
+            <!-- Live Chat -->
+            <div class="contact-card">
+                <img src="{% static 'Images/live-chat.png' %}" alt="Live Chat">
+                <h3>{% trans "Canlı Söhbət" %}</h3>
+                <p>{% trans "Sayt üzərindən canlı dəstək ilə əlaqə qurun." %}</p>
+                <a href="#"> {% trans "Söhbətə Başla" %} </a>
+            </div>
+
+            <!-- Location / Instagram -->
+            <div class="contact-card">
+                <img src="{% static 'Images/instagram (2).png' %}" alt="Instagram">
+                <h3>{% trans "Instagram" %}</h3>
+                <p>{% trans "Bizi yerində ziyarət edin və Instagram səhifəmizə baxın." %}</p>
+                <a href="https://www.instagram.com/fixbit.az/" target="_blank">{% trans "Instagram" %}</a>
+
+            </div>
+            <div class="contact-card">
+                <img src="{% static 'Images/location.png' %}" alt="Location">
+                <h3>{% trans "Ünvan" %}</h3>
+                <p>{% trans "Bizi yerində ziyarət edin." %}</p>
+                <a href="" target="_blank">{% trans "Ünvan" %}</a>
+            </div>
+    </section>
+
+    <section class="message-section">
+        <h2>{% trans "Bizə Mesaj Göndərin" %}</h2>
+        <form class="contact-form" method="POST" action="{% url 'contactmessage' %}">
+            {% csrf_token %}
+            <input type="text" name="name" placeholder="{% trans 'Adınız' %}" required>
+            <input type="email" name="email" placeholder="{% trans 'Email ünvanınız' %}" required>
+            <textarea name="message" rows="5" placeholder="{% trans 'Mesajınız...' %}" required></textarea>
+            <button type="submit">{% trans "Göndər" %}</button>
+        </form>
+    </section>
+
+    <div class="map-container" style="text-align:center; margin-top: 30px;">
+        <h3>{% trans "Ünvanımız" %}</h3>
+        <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3038.651221206962!2d49.86709221537855!3d40.40926197936426!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40307d3c0e0c12c3%3A0x7a3840fc342b3b62!2sBaku%2C%20Azerbaijan!5e0!3m2!1sen!2sus!4v1630000000000"
+            width="100%" height="350" style="border:0;" allowfullscreen="" loading="lazy">
+        </iframe>
+    </div>
+
+    <footer class="site-footer">
+        <div class="footer-content">
+            <p>&copy; 2025 Fixbit - Bütün hüquqlar qorunur.</p>
+            <nav class="footer-nav">
+                <a href="{% url 'home' %}">Əsas səhifə</a>
+                <a href="{% url 'services' %}">Xidmətlər</a>
+                <a href="{% url 'questions' %}">Suallar</a>
+                <a href="{% url 'contact' %}">Əlaqə</a>
+            </nav>
+        </div>
+    </footer>
+</body>
+
+
+<script>
+    const hamburger = document.getElementById("hamburger");
+    const nav = document.getElementById("nav");
+
+    hamburger.addEventListener("click", () => {
+        nav.classList.toggle("active");
+    });
+</script>
+
+<script>
+    // Category switching
+    document.querySelectorAll('.category-link').forEach(link => {
+        link.addEventListener('click', (e) => {
+            e.preventDefault(); // Prevent default anchor behavior
+            // Remove active class from all category links
+            document.querySelectorAll('.category-link').forEach(l => l.classList.remove('active'));
+            link.classList.add('active');
+
+            const categoryId = link.getAttribute('data-category');
+
+            // Hide all FAQ categories and show the selected one
+            document.querySelectorAll('.faq-category').forEach(category => {
+                category.classList.add('hidden');
+                if (category.id === `category-${categoryId}`) {
+                    category.classList.remove('hidden');
+                }
+            });
+        });
+    });
+
+    // Question toggling
+    document.querySelectorAll('.faq-question').forEach(question => {
+        question.addEventListener('click', () => {
+            const item = question.parentElement;
+            item.classList.toggle('active');
+            const toggleIcon = question.querySelector('.toggle-icon');
+            toggleIcon.textContent = item.classList.contains('active') ? '−' : '+';
+        });
+    });
+</script>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const heroSection = document.querySelector('.hero-with-bg');
+        if (heroSection) {
+            const bg = heroSection.getAttribute('data-bg');
+            if (bg) {
+                heroSection.style.backgroundImage = `url(${bg})`;
+            }
+        }
+    });
+</script>
+
+</body>
+
+</html>

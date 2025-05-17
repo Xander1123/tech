@@ -1,0 +1,71 @@
+.message-section {
+    background-color: #f9f5ff;
+    padding: 60px 20px;
+    text-align: center;
+}
+
+.message-section h2 {
+    font-size: 32px;
+    color: #1a1a5e;
+    margin-bottom: 30px;
+    font-weight: 600;
+}
+
+.contact-form {
+    max-width: 600px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.contact-form input,
+.contact-form textarea {
+    padding: 15px 20px;
+    border: 2px solid #d1d1ff;
+    border-radius: 12px;
+    font-size: 16px;
+    background-color: #fff;
+    color: #1a1a5e;
+    outline: none;
+    transition: border-color 0.3s ease;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+    border-color: #1a1a5e;
+}
+
+.contact-form button {
+    background-color: #1a1a5e;
+    color: #fff;
+    padding: 14px 28px;
+    font-size: 18px;
+    font-weight: 500;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.contact-form button:hover {
+    background-color: #3737a3;
+}
+
+/* Adaptivlik */
+@media (max-width: 480px) {
+    .message-section h2 {
+        font-size: 24px;
+    }
+
+    .contact-form input,
+    .contact-form textarea {
+        font-size: 15px;
+    }
+
+    .contact-form button {
+        font-size: 16px;
+        padding: 12px 20px;
+    }
+}

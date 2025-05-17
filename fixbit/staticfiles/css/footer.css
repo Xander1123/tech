@@ -1,0 +1,31 @@
+.site-footer {
+    background-color: #ffffff;
+    color: #1a1a5e;
+    padding: 30px 20px;
+    text-align: center;
+    border-top: 2px solid #1a1a5e;
+}
+
+.site-footer .footer-content p {
+    color: #1a1a5e;
+    font-size: 16px;
+    margin-bottom: 15px;
+}
+
+.footer-nav {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.footer-nav a {
+    color: #1a1a5e;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.footer-nav a:hover {
+    color: #0080ff;
+}
