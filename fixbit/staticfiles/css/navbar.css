@@ -1,0 +1,237 @@
+/* Header Styles */
+
+.header {
+    width: 100%;
+    position: relative;
+}
+
+.compact-top-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 6px 15px;
+    background-color: #1a1a5e;
+    color: white;
+    font-size: 13px;
+}
+
+.left-section, .right-section {
+    display: flex;
+    align-items: center;
+}
+
+.phone-number {
+    margin: 0;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.lang-link {
+    color: white;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 3px;
+    margin-left: 10px;
+    padding: 2px 5px;
+}
+
+.lang-link img {
+    width: 16px;
+    height: 16px;
+}
+
+/* Small screens */
+@media (max-width: 480px) {
+    .compact-top-bar {
+        padding: 5px 10px;
+        font-size: 12px;
+    }
+    
+    .lang-link {
+        margin-left: 8px;
+        gap: 2px;
+    }
+    
+    .lang-link img {
+        width: 14px;
+        height: 14px;
+    }
+}
+
+
+    /* Top bar */
+    .top-bar {
+        background-color: #1a1a5e;
+        color: #fff;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 6px 20px;
+        font-size: 14px;
+      }
+  
+      .top-bar .left,
+      .top-bar .right {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+      }
+  
+      .top-bar i {
+        margin-right: 5px;
+      }
+  
+
+    /* Navbar */
+    .navbar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 5px 10px;
+        background-color: #ffffff;
+        position: relative;
+    }
+    
+    
+    .navbar .logo { 
+        text-decoration: none;
+        color: #1a1a5e;
+        font-size: 28px;
+        font-weight: bold;
+        text-shadow: 0 0 6px rgb(255, 255, 255);
+    }
+    .navbar .logo img {
+        height: 50px;
+        padding: 0;
+        margin: 0;
+    }
+    
+    .navbar ul {
+        list-style: none;
+        display: flex;
+        gap: 25px;
+        margin: 0;
+        padding: 0;
+    }
+    nav a {
+        color: #e6f7ff;
+        text-decoration: none;
+        font-weight: 500;
+        display: flex;
+        align-items: center;
+        transition: color 0.3s;
+        padding: 10px 0;
+    }
+    
+    .navbar ul li a {
+        color: #1a1a5e;
+        text-decoration: none;
+        font-size: 16px;
+        position: relative;
+        transition: all 0.3s ease;
+    }
+    
+    .navbar ul li a:hover {
+        color: #FFD700;
+    }
+    
+    .navbar ul li a::after {
+        content: "";
+        display: block;
+        width: 0%;
+        height: 2px;
+        background: #FFD700;
+        transition: width 0.3s;
+        position: absolute;
+        bottom: -4px;
+        left: 0;
+    }
+    
+    .navbar ul li a:hover::after {
+        width: 100%;
+    }
+    .navbar ul {
+        display: flex;
+        gap: 25px;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+    }
+    
+    .navbar ul li a {
+        text-decoration: none;
+        color: #333;
+        font-size: 16px;
+        display: flex;
+        align-items: center;
+    }
+    
+    
+    .navbar ul li a .nav-icon {
+      
+            width: 20px;
+            height: 20px;
+            margin-right: 8px;
+            vertical-align: middle;
+        
+    
+    }
+    .navbar ul li a:hover {
+        color: #FFD700;
+    }
+    /* Hamburger Menu Styles */
+    /* Hamburger icon (gözlə görünməz halda başlayır) */
+    .hamburger {
+        display: none;
+        cursor: pointer;
+        flex-direction: column;
+        justify-content: space-between;
+        width: 30px;
+        height: 21px;
+    }
+    
+    /* Hamburger xətləri */
+    .hamburger span {
+        display: block;
+        height: 3px;
+        width: 100%;
+        background-color: #1a1a5e;
+        border-radius: 3px;
+        transition: all 0.3s ease;
+    }
+    
+    /* Mobile Styles */
+    @media (max-width: 768px) {
+        .hamburger {
+            display: flex;
+        }
+    
+        header.navbar nav {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            width: 100%;
+            padding: 20px;
+            background-color: transparent; /* Şəffaf başlanğıc */
+            box-shadow: none;
+            transform: translateY(-150%);
+            transition: transform 0.3s ease, background-color 0.3s ease;
+            z-index: 100;
+        }
+    
+        /* Menyu açıldıqda görünəcək hissə */
+        header.navbar nav.active {
+            transform: translateY(0);
+            background-color: #ffffff; /* Ağ fon menyu açılarkən */
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+        }
+    
+        header.navbar nav ul {
+            flex-direction: column;
+            gap: 15px;
+        }
+    }
+    
+    

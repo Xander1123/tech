@@ -1,0 +1,301 @@
+
+{% load static %}
+{% load tz %}
+
+<!DOCTYPE html>
+<html lang="az">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description"
+    content="Fixbit - Texniki dəstək xidmətləri, kompüter təmiri, proqram təminatı və təhlükəsizlik kameralarının quraşdırılması.">
+  <meta name="keywords" content="texniki dəstək, IT xidmətləri, kompüter təmiri, şəbəkə problemləri">
+  <meta name="author" content="Fixbit">
+
+  <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+  <link rel="stylesheet" href="{% static 'css/Elaqe.css' %}">
+  <link rel="stylesheet" href="{% static 'css/faq.css' %}">
+  <link rel="stylesheet" href="{% static 'css/messege.css' %}">
+  <link rel="stylesheet" href="{% static 'css/footer.css' %}">
+  <link rel="stylesheet" href="{% static 'css/hero.css' %}">
+  <link rel="stylesheet" href="{% static 'css/navbar.css' %}">
+  <link rel="stylesheet" href="{% static 'css/contact.css' %}">
+  <link rel="stylesheet" href="{% static 'css/map.css' %}">
+  <link rel="stylesheet" href="{% static 'css/services.css' %}">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="shortcut icon" href="{% static 'Images/favicon.ico' %}" type="image/x-icon">
+
+  <title>Fixbit | Technical support </title>
+</head>
+
+<body>
+  <!-- Top Bar -->
+  <div class="compact-top-bar">
+    <div class="left-section">
+      <p class="phone-number">
+        <img src="{% static 'Images/yphone.png' %}" alt="Phone"
+          style="width: 16px; height: 16px; vertical-align: middle; margin-right: 5px;">
+        +994 10 209 08 88
+      </p>
+
+    </div>
+    <div class="right-section">
+      <a href="https://wa.me/994102090888" target="_blank" class="contact-link">
+        <img src="{% static 'Images/whatsappy.png' %}" alt="WhatsApp"
+          style="width: 20px; height: 20px; vertical-align: middle;">
+      </a>
+      <a href="https://www.instagram.com/fixbit.az/" target="_blank" class="contact-link" style="margin-left: 10px;">
+        <img src="{% static 'Images/instagramy.png' %}" alt="Instagram"
+          style="width: 20px; height: 20px; vertical-align: middle;">
+      </a>
+    </div>
+
+
+  </div>
+
+  <!-- Navbar -->
+  <header class="navbar">
+    <div class="logo">
+      <a href="{% url 'home' %}">
+        <img src="{% static 'Images/fixbit sozu.png' %}" alt="Logo">
+      </a>
+    </div>
+
+    <!-- Hamburger Icon -->
+    <div class="hamburger" id="hamburger">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+
+    <nav id="nav">
+      <ul>
+        <li>
+          <a href="{% url 'home' %}">
+            <img src="{% static 'Images/home.png' %}" alt="Əsas Səhifə İkonu" class="nav-icon">
+            Əsas Səhifə
+          </a>
+        </li>
+        <li>
+          <a href="{% url 'services' %}">
+            <img src="{% static 'Images/maintenance.png' %}" alt="Xidmətlər İkonu" class="nav-icon">
+            Xidmətlər
+          </a>
+        </li>
+        <li>
+          <a href="{% url 'questions' %}">
+            <img src="{% static 'Images/conversation.png' %}" alt="Suallar İkonu" class="nav-icon">
+            Suallar
+          </a>
+        </li>
+        <li>
+          <a href="{% url 'contact' %}">
+            <img src="{% static 'Images/phone.png' %}" alt="Əlaqə İkonu" class="nav-icon">
+            Əlaqə
+          </a>
+        </li>
+      </ul>
+    </nav>
+  </header>
+
+  <section class="hero {% if background_image_url %}hero-with-bg{% endif %}" data-bg="{{ background_image_url }}">
+    <div class="hero-content">
+      {% if hero_section %}
+      <h1>{{ hero_section.title }}</h1>
+      <p>{{ hero_section.description }}</p>
+      <a href="{{ hero_section.button_url }}" class="hero-btn">{{ hero_section.button_text }}</a>
+      {% else %}
+      <h1>Xidmətlərimizlə Tanış Olun</h1>
+      <p>Bizimlə texniki dəstək alın və problemlərinizi həll edin!</p>
+      <a href="#services" class="hero-btn">Ətraflı</a>
+      {% endif %}
+    </div>
+  </section>
+
+  <section class="services-section">
+    <h2 class="section-title">Xidmətlərimiz</h2>
+    <div class="services-grid">
+      {% for service in services %}
+      <div class="maincontainer">
+        <div class="front"
+          style="background-image: url('{% if service.image %}{{ service.image.url }}{% else %}{% static "
+          images/default.jpg" %}{% endif %}');">
+          <h2>{{ service.name }}</h2>
+        </div>
+        <div class="back">
+          <p>{{ service.description }}</p>
+          <a href="https://wa.me/0102090888?text=Salam%2C%20sizdən%20xidmət%20almaq%20istəyirəm." class="btn-details"
+            target="_blank">
+            Daha Ətraflı
+          </a>
+        </div>
+      </div>
+      {% empty %}
+      <p>Hələ heç bir xidmət əlavə edilməmişdir.</p>
+      {% endfor %}
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="faq-section">
+    <h2>Ən Çox Verilən Suallar</h2>
+    <div class="faq-container">
+      <div class="faq-dropdown">
+        <select id="categoryDropdown" class="faq-select">
+          {% for category in faq_categories %}
+          <option value="{{ category.id }}">{{ category.name }}</option>
+          {% endfor %}
+        </select>
+      </div>
+
+      <div class="faq-questions">
+        {% for category in faq_categories %}
+        <div id="category-{{ category.id }}" class="faq-category {% if not forloop.first %}hidden{% endif %}">
+          {% if category.active_faqs %}
+          {% for question in category.active_faqs %}
+          <div class="faq-item">
+            <div class="faq-question">
+              {{ question.question }}
+              <span class="toggle-icon">+</span>
+            </div>
+            <div class="faq-answer">
+              {{ question.answer }}
+            </div>
+          </div>
+          {% endfor %}
+          {% else %}
+          <p class="no-questions">Bu kateqoriyada suallar yoxdur.</p>
+          {% endif %}
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+
+  <section class="contact-section">
+    <h2>Bizimlə Əlaqə</h2>
+    <div class="contact-cards">
+      <!-- WhatsApp -->
+      <div class="contact-card">
+        <img src="{% static 'Images/whatsapp (1).png' %}" alt="WhatsApp">
+        <h3>WhatsApp</h3>
+        <p>Bizimlə WhatsApp üzərindən birbaşa əlaqə saxlayın.</p>
+        <a href="https://wa.me/994102090888" target="_blank">Əlaqə Saxla</a>
+      </div>
+
+      <!-- Live Chat -->
+      <div class="contact-card">
+        <img src="{% static 'Images/live-chat.png' %}" alt="Live Chat">
+        <h3>Canlı Söhbət</h3>
+        <p>Sayt üzərindən canlı dəstək ilə əlaqə qurun.</p>
+        <a href="#">Söhbətə Başla</a>
+      </div>
+
+      <!-- Instagram -->
+      <div class="contact-card">
+        <img src="{% static 'Images/instagram (2).png' %}" alt="Instagram">
+        <h3>Instagram</h3>
+        <p>Bizi yerində ziyarət edin və Instagram səhifəmizə baxın.</p>
+        <a href="https://www.instagram.com/fixbit.az/" target="_blank">Instagram</a>
+      </div>
+
+      <!-- Location -->
+      <div class="contact-card">
+        <img src="{% static 'Images/location.png' %}" alt="Location">
+        <h3>Ünvan</h3>
+        <p>Bizi yerində ziyarət edin.</p>
+        <a href="" target="_blank">Ünvan</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="message-section">
+    <h2>Bizə Mesaj Göndərin</h2>
+    <form class="contact-form" method="POST" action="{% url 'contactmessage' %}">
+      {% csrf_token %}
+      <input type="text" name="name" placeholder="Adınız" required>
+      <input type="email" name="email" placeholder="Email ünvanınız" required>
+      <textarea name="message" rows="5" placeholder="Mesajınız..." required></textarea>
+      <button type="submit">Göndər</button>
+    </form>
+  </section>
+
+  <div class="map-container" style="text-align:center; margin-top: 30px;">
+    <h3>Ünvanımız</h3>
+    <iframe
+      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3038.651221206962!2d49.86709221537855!3d40.40926197936426!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40307d3c0e0c12c3%3A0x7a3840fc342b3b62!2sBaku%2C%20Azerbaijan!5e0!3m2!1sen!2sus!4v1630000000000"
+      width="100%" height="350" style="border:0;" allowfullscreen="" loading="lazy">
+    </iframe>
+  </div>
+
+  <footer class="site-footer">
+    <div class="footer-content">
+      <p>&copy; {% now "Y" %} Fixbit - Bütün hüquqlar qorunur.</p>
+      <nav class="footer-nav">
+        <a href="{% url 'home' %}">Əsas səhifə</a>
+        <a href="{% url 'services' %}">Xidmətlər</a>
+        <a href="{% url 'questions' %}">Suallar</a>
+        <a href="{% url 'contact' %}">Əlaqə</a>
+      </nav>
+    </div>
+  </footer>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      // Hamburger menyusu üçün
+      const hamburger = document.getElementById("hamburger");
+      const nav = document.getElementById("nav");
+
+      if (hamburger && nav) {
+        hamburger.addEventListener("click", () => {
+          nav.classList.toggle("active");
+        });
+      }
+
+      // Hero background şəkli
+      const heroSection = document.querySelector('.hero-with-bg');
+      if (heroSection) {
+        const bg = heroSection.getAttribute('data-bg');
+        if (bg) {
+          heroSection.style.backgroundImage = `url(${bg})`;
+        }
+      }
+
+      // FAQ kateqoriya dəyişdirilməsi
+      const dropdown = document.getElementById("categoryDropdown");
+      const categories = document.querySelectorAll(".faq-category");
+
+      if (dropdown) {
+        dropdown.addEventListener("change", function () {
+          const selectedId = "category-" + this.value;
+          categories.forEach(cat => {
+            if (cat.id === selectedId) {
+              cat.classList.remove("hidden");
+            } else {
+              cat.classList.add("hidden");
+            }
+          });
+        });
+      }
+
+      // Sualları açıb-bağlamaq
+      const questions = document.querySelectorAll(".faq-question");
+      questions.forEach(q => {
+        q.addEventListener("click", () => {
+          const item = q.parentElement;
+          item.classList.toggle("active");
+          const icon = q.querySelector(".toggle-icon");
+          if (icon) {
+            icon.textContent = item.classList.contains("active") ? "−" : "+";
+          }
+        });
+      });
+    });
+    
+    
+  </script>
+  
+</body>
+
+</html>

@@ -1,0 +1,125 @@
+.faq-section {
+  padding: 60px 20px;
+  background: #1a1a5e; /* Arxa fon */
+}
+
+.faq-section h2 {
+  text-align: center;
+  font-size: 32px;
+  color: #fff; /* Başlıq rəngi - tünd mavi fonda ağ daha yaxşı görünür */
+  margin-bottom: 40px;
+}
+
+.faq-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 40px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.faq-categories {
+  width: 250px;
+  min-width: 200px;
+  flex-shrink: 0;
+}
+
+@media (max-width: 768px) {
+  .faq-container {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .faq-categories,
+  .faq-content {
+    width: 100%;
+  }
+}
+
+.faq-categories ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.faq-categories li {
+  padding: 10px 15px;
+  background: #e7e3ff;
+  margin-bottom: 10px;
+  cursor: pointer;
+  border-radius: 5px;
+  font-weight: 500;
+  transition: background 0.3s;
+}
+
+.faq-categories li.active,
+.faq-categories li:hover {
+  background: #ffcc00; /* Sual kateqoriyasının hover və aktiv fonu üçün sarı */
+  color: #1a1a5e;
+}
+
+.faq-content {
+  flex-grow: 1;
+  min-width: 0;
+}
+
+.faq-group {
+  display: none;
+}
+
+.faq-group.active {
+  display: block;
+}
+
+.faq-item {
+  background: #1a1a5e; /* Sual blokunun fonu */
+  border: 1px solid #fff;
+  margin-bottom: 15px;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 10px rgba(107, 33, 168, 0.1);
+}
+
+.faq-question {
+  width: 100%;
+  text-align: left;
+  background-color: #1a1a5e;
+  color: white;
+  padding: 15px;
+  font-size: 16px;
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
+
+.faq-answer {
+  display: none;
+  padding: 15px;
+  background-color: #e7e3ff;
+  color: #1a1a5e;
+  line-height: 1.5;
+}
+
+.faq-item.active .faq-answer {
+  display: block;
+  animation: slideDown 0.3s ease forwards;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-5px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 768px) {
+  .faq-container {
+    flex-direction: column;
+  }
+}

@@ -1,0 +1,196 @@
+{% load static %}
+{% load i18n %}
+
+<!DOCTYPE html>
+<html lang="az">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Fixbit - Texniki dəstək xidmətləri, kompüter təmiri, proqram təminatı və təhlükəsizlik kameralarının quraşdırılması.">
+    <meta name="keywords"
+        content="Texniki dəstək, kompüter təmiri, proqram təminatı, təhlükəsizlik kameraları, IT xidmətləri">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/Elaqe.css' %}">
+    <link rel="stylesheet" href="{% static 'css/faq.css' %}">
+    <link rel="stylesheet" href="{% static 'css/footer.css' %}">
+    <link rel="stylesheet" href="{% static 'css/hero.css' %}">
+    <link rel="stylesheet" href="{% static 'css/navbar.css' %}">
+    <link rel="stylesheet" href="{% static 'css/contact.css' %}">
+    <link rel="stylesheet" href="{% static 'css/map.css' %}">
+    <link rel="stylesheet" href="{% static 'css/services.css' %}">
+
+    <link rel="shortcut icon" href="{% static 'Images/favicon.ico' %}" type="image/x-i0con">
+
+    <title>Fixbit | Technical support </title>
+</head>
+
+<body>
+
+   <div class="compact-top-bar">
+    <div class="left-section">
+      <p class="phone-number">
+        <img src="{% static 'Images/yphone.png' %}" alt="Phone"
+          style="width: 16px; height: 16px; vertical-align: middle; margin-right: 5px;">
+        +994 10 209 08 88
+      </p>
+
+    </div>
+    <div class="right-section">
+      <a href="https://wa.me/994102090888" target="_blank" class="contact-link">
+        <img src="{% static 'Images/whatsappy.png' %}" alt="WhatsApp"
+          style="width: 20px; height: 20px; vertical-align: middle;">
+      </a>
+      <a href="https://www.instagram.com/fixbit.az/" target="_blank" class="contact-link" style="margin-left: 10px;">
+        <img src="{% static 'Images/instagramy.png' %}" alt="Instagram"
+          style="width: 20px; height: 20px; vertical-align: middle;">
+      </a>
+    </div>
+    </div>
+    <!-- Navbar -->
+    <header class="navbar">
+        <div class="logo">
+            <a href="{% url 'home' %}">
+                <img src="{% static 'Images/fixbit sozu.png' %}" alt="Logo">
+            </a>
+        </div>
+
+        <!-- Hamburger Icon -->
+        <div class="hamburger" id="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+
+        <nav id="nav">
+            <ul>
+                <li>
+                    <a href="{% url 'home' %}">
+                        <img src="{% static 'Images/home.png' %}" alt="{% trans 'Əsas Səhifə İkonu' %}"
+                            class="nav-icon">
+                        {% trans 'Əsas Səhifə' %}
+                    </a>
+                </li>
+                <li>
+                    <a href="{% url 'services' %}">
+                        <img src="{% static 'Images/maintenance.png' %}" alt="{% trans 'Xidmətlər İkonu' %}"
+                            class="nav-icon">
+                        {% trans 'Xidmətlər' %}
+                    </a>
+                </li>
+                <li>
+                    <a href="{% url 'questions' %}">
+                        <img src="{% static 'Images/conversation.png' %}" alt="{% trans 'Suallar İkonu' %}"
+                            class="nav-icon">
+                        {% trans 'Suallar' %}
+                    </a>
+                </li>
+                <li>
+                    <a href="{% url 'contact' %}">
+                        <img src="{% static 'Images/phone.png' %}" alt="{% trans 'Əlaqə İkonu' %}" class="nav-icon">
+                        {% trans 'Əlaqə' %}
+                    </a>
+                </li>
+            </ul>
+        </nav>
+
+    </header>
+
+    <section class="contact-section">
+        <h2>{% trans "Bizimlə Əlaqə" %}</h2>
+        <div class="contact-cards">
+            <!-- WhatsApp -->
+            <div class="contact-card">
+                <img src="{% static 'Images/whatsapp (1).png' %}" alt="WhatsApp">
+                <h3>{% trans "WhatsApp" %}</h3>
+                <p>{% trans "Bizimlə WhatsApp üzərindən birbaşa əlaqə saxlayın." %}</p>
+                <a href="https://wa.me/994102090888" target="_blank">{% trans "Əlaqə Saxla" %}</a>
+            </div>
+
+            <!-- Live Chat -->
+            <div class="contact-card">
+                <img src="{% static 'Images/live-chat.png' %}" alt="Live Chat">
+                <h3>{% trans "Canlı Söhbət" %}</h3>
+                <p>{% trans "Sayt üzərindən canlı dəstək ilə əlaqə qurun." %}</p>
+
+                <a href="https://wa.me/994102090888" target="_blank">{% trans "Söhbətə başla" %}</a>
+            </div>
+
+            <!-- Location / Instagram -->
+            <div class="contact-card">
+                <img src="{% static 'Images/instagram (2).png' %}" alt="Instagram">
+                <h3>{% trans "Instagram" %}</h3>
+                <p>{% trans "Bizi yerində ziyarət edin və Instagram səhifəmizə baxın." %}</p>
+                <a href="https://www.instagram.com/fixbit.az/" target="_blank">{% trans "Instagram" %}</a>
+
+            </div>
+            <div class="contact-card">
+                <img src="{% static 'Images/location.png' %}" alt="Location">
+                <h3>{% trans "Ünvan" %}</h3>
+                <p>{% trans "Bizi yerində ziyarət edin." %}</p>
+                <a href="#" onclick="showMap()">{% trans "Ünvan" %}</a>
+            </div>
+
+    </section>
+    <div id="map-container" class="map-container" style="display:none; text-align:center; margin-top: 30px;">
+        <h3>{% trans "Ünvanımız" %}</h3>
+        <iframe id="map"
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3038.651221206962!2d49.86709221537855!3d40.40926197936426!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40307d3c0e0c12c3%3A0x7a3840fc342b3b62!2sBaku%2C%20Azerbaijan!5e0!3m2!1sen!2sus!4v1630000000000"
+            width="100%" height="350" style="border:0;" allowfullscreen="" loading="lazy">
+        </iframe>
+    </div>
+
+
+
+    <footer class="site-footer">
+        <div class="footer-content">
+            <p>&copy; 2025 Fixbit - Bütün hüquqlar qorunur.</p>
+            <nav class="footer-nav">
+                <a href="{% url 'home' %}">Əsas səhifə</a>
+                <a href="{% url 'services' %}">Xidmətlər</a>
+                <a href="{% url 'questions' %}">Suallar</a>
+                <a href="{% url 'contact' %}">Əlaqə</a>
+            </nav>
+        </div>
+    </footer>
+    </div>
+</body>
+
+
+
+
+<script>
+    // Toggle the mobile menu visibility when hamburger is clicked
+    function toggleMobileMenu() {
+        const menu = document.getElementById('mobileMenu');
+        menu.classList.toggle('show');
+    }
+
+    // Close the mobile menu when a link is clicked
+    document.querySelectorAll('.mobile-menu a').forEach(link => {
+        link.addEventListener('click', () => {
+            const menu = document.getElementById('mobileMenu');
+            menu.classList.remove('show');  // Hide the menu when any link is clicked
+        });
+    });
+
+</script>
+<script>
+    const hamburger = document.getElementById("hamburger");
+    const nav = document.getElementById("nav");
+
+    hamburger.addEventListener("click", () => {
+        nav.classList.toggle("active");
+    });
+</script>
+<script>
+    function showMap() {
+        var mapContainer = document.getElementById('map-container');
+        // Xəritəyi göstəririk
+        mapContainer.style.display = "block";
+    }
+</script>
+
+
+</html>

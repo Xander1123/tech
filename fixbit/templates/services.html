@@ -1,0 +1,182 @@
+{% load static %}
+{% load i18n %}
+
+<!DOCTYPE html>
+<html lang="az">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Fixbit - Texniki dəstək xidmətləri, kompüter təmiri, proqram təminatı və təhlükəsizlik kameralarının quraşdırılması.">
+    <meta name="keywords"
+        content="Texniki dəstək, kompüter təmiri, proqram təminatı, təhlükəsizlik kameraları, IT xidmətləri">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/Elaqe.css' %}">
+    <link rel="stylesheet" href="{% static 'css/faq.css' %}">
+    <link rel="stylesheet" href="{% static 'css/footer.css' %}">
+    <link rel="stylesheet" href="{% static 'css/hero.css' %}">
+    <link rel="stylesheet" href="{% static 'css/navbar.css' %}">
+    <link rel="stylesheet" href="{% static 'css/contact.css' %}">
+    <link rel="stylesheet" href="{% static 'css/map.css' %}">
+    <link rel="stylesheet" href="{% static 'css/services.css' %}">
+    <link rel="shortcut icon" href="{% static 'Images/favicon.ico' %}" type="image/x-i0con">
+
+
+
+
+    <title>Fixbit | Technical support </title>
+</head>
+
+<body>
+
+ <div class="compact-top-bar">
+    <div class="left-section">
+      <p class="phone-number">
+        <img src="{% static 'Images/yphone.png' %}" alt="Phone"
+          style="width: 16px; height: 16px; vertical-align: middle; margin-right: 5px;">
+        +994 10 209 08 88
+      </p>
+
+    </div>
+    <div class="right-section">
+      <a href="https://wa.me/994102090888" target="_blank" class="contact-link">
+        <img src="{% static 'Images/whatsappy.png' %}" alt="WhatsApp"
+          style="width: 20px; height: 20px; vertical-align: middle;">
+      </a>
+      <a href="https://www.instagram.com/fixbit.az/" target="_blank" class="contact-link" style="margin-left: 10px;">
+        <img src="{% static 'Images/instagramy.png' %}" alt="Instagram"
+          style="width: 20px; height: 20px; vertical-align: middle;">
+      </a>
+    </div>
+    </div>
+    <!-- Navbar -->
+    <header class="navbar">
+        <div class="logo">
+            <a href="{% url 'home' %}">
+                <img src="{% static 'Images/fixbit sozu.png' %}" alt="Logo">
+            </a>
+        </div>
+
+        <!-- Hamburger Icon -->
+        <div class="hamburger" id="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+
+        <nav id="nav">
+            <ul>
+                <li>
+                    <a href="{% url 'home' %}">
+                        <img src="{% static 'Images/home.png' %}" alt="{% trans 'Əsas Səhifə İkonu' %}"
+                            class="nav-icon">
+                        {% trans 'Əsas Səhifə' %}
+                    </a>
+                </li>
+                <li>
+                    <a href="{% url 'services' %}">
+                        <img src="{% static 'Images/maintenance.png' %}" alt="{% trans 'Xidmətlər İkonu' %}"
+                            class="nav-icon">
+                        {% trans 'Xidmətlər' %}
+                    </a>
+                </li>
+                <li>
+                    <a href="{% url 'questions' %}">
+                        <img src="{% static 'Images/conversation.png' %}" alt="{% trans 'Suallar İkonu' %}"
+                            class="nav-icon">
+                        {% trans 'Suallar' %}
+                    </a>
+                </li>
+                <li>
+                    <a href="{% url 'contact' %}">
+                        <img src="{% static 'Images/phone.png' %}" alt="{% trans 'Əlaqə İkonu' %}" class="nav-icon">
+                        {% trans 'Əlaqə' %}
+                    </a>
+                </li>
+            </ul>
+        </nav>
+
+    </header>
+    </div>
+    <!-- navbar -->
+  <section class="services-section">
+        <h2 class="section-title">{% trans "Xidmətlərimiz" %}</h2>
+        <div class="services-grid">
+            {% for service in services %}
+            <div class="maincontainer">
+                <div class="front"
+                    style="background-image: url('{% if service.image %}{{ service.image.url }}{% else %}{% static "
+                    images/default.jpg" %}{% endif %}'); ">
+                <h2>{{ service.name }}</h2>
+            </div>
+            <div class=" back">
+                    <p>{{ service.description }}</p>
+                    <a href="https://wa.me/0102090888?text=Salam%2C%20sizdən%20xidmət%20almaq%20istəyirəm."
+                        class="btn-details" target="_blank">
+                        {% trans "Daha Ətraflı" %}
+                    </a>
+                </div>
+            </div>
+            {% empty %}
+            <p>{% trans "Hələ heç bir xidmət əlavə edilməmişdir." %}</p>
+            {% endfor %}
+        </div>
+    </section>
+
+
+ 
+    <footer class="site-footer">
+        <div class="footer-content">
+            <p>&copy; 2025 Fixbit - Bütün hüquqlar qorunur.</p>
+            <nav class="footer-nav">
+                <a href="{% url 'home' %}">Əsas səhifə</a>
+                <a href="{% url 'services' %}">Xidmətlər</a>
+                <a href="{% url 'questions' %}">Suallar</a>
+                <a href="{% url 'contact' %}">Əlaqə</a>
+            </nav>
+        </div>
+    </footer>
+    </div>
+</body>
+
+
+<script>
+    const questions = document.querySelectorAll('.faq-question');
+
+    questions.forEach((btn) => {
+        btn.addEventListener('click', () => {
+            const answer = btn.nextElementSibling;
+            answer.style.display = answer.style.display === 'block' ? 'none' : 'block';
+        });
+    });
+</script>
+<script>// Toggle the mobile menu visibility when hamburger is clicked
+    function toggleMobileMenu() {
+        const menu = document.getElementById('mobileMenu');
+        menu.classList.toggle('show');
+    }
+
+    // Close the mobile menu when a link is clicked
+    document.querySelectorAll('.mobile-menu a').forEach(link => {
+        link.addEventListener('click', () => {
+            const menu = document.getElementById('mobileMenu');
+            menu.classList.remove('show');  // Hide the menu when any link is clicked
+        });
+    });
+</script>
+<script>
+    const hamburger = document.getElementById("hamburger");
+    const nav = document.getElementById("nav");
+
+    hamburger.addEventListener("click", () => {
+        nav.classList.toggle("active");
+    });
+</script>
+
+
+
+</html>

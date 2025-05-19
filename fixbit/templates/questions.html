@@ -1,0 +1,224 @@
+{% load static %}
+{% load i18n %}
+
+<!DOCTYPE html>
+<html lang="az">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Fixbit - Texniki dəstək xidmətləri, kompüter təmiri, proqram təminatı və təhlükəsizlik kameralarının quraşdırılması.">
+    <meta name="keywords"
+        content="Texniki dəstək, kompüter təmiri, proqram təminatı, təhlükəsizlik kameraları, IT xidmətləri">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/Elaqe.css' %}">
+    <link rel="stylesheet" href="{% static 'css/faq.css' %}">
+    <link rel="stylesheet" href="{% static 'css/footer.css' %}">
+    <link rel="stylesheet" href="{% static 'css/hero.css' %}">
+    <link rel="stylesheet" href="{% static 'css/navbar.css' %}">
+    <link rel="stylesheet" href="{% static 'css/contact.css' %}">
+    <link rel="stylesheet" href="{% static 'css/map.css' %}">
+    <link rel="stylesheet" href="{% static 'css/services.css' %}">
+    <link rel="stylesheet" href="{%static 'css/messege.css'%}">
+
+    <link rel="shortcut icon" href="{% static 'Images/favicon.ico' %}" type="image/x-i0con">
+
+    <title>Fixbit | Technical support </title>
+</head>
+
+<body>
+   <div class="compact-top-bar">
+    <div class="left-section">
+      <p class="phone-number">
+        <img src="{% static 'Images/yphone.png' %}" alt="Phone"
+          style="width: 16px; height: 16px; vertical-align: middle; margin-right: 5px;">
+        +994 10 209 08 88
+      </p>
+
+    </div>
+    <div class="right-section">
+      <a href="https://wa.me/994102090888" target="_blank" class="contact-link">
+        <img src="{% static 'Images/whatsappy.png' %}" alt="WhatsApp"
+          style="width: 20px; height: 20px; vertical-align: middle;">
+      </a>
+      <a href="https://www.instagram.com/fixbit.az/" target="_blank" class="contact-link" style="margin-left: 10px;">
+        <img src="{% static 'Images/instagramy.png' %}" alt="Instagram"
+          style="width: 20px; height: 20px; vertical-align: middle;">
+      </a>
+    </div>
+
+    </div>
+    <!-- Navbar -->
+    <header class="navbar">
+        <div class="logo">
+            <a href="{% url 'home' %}">
+                <img src="{% static 'Images/fixbit sozu.png' %}" alt="Logo">
+            </a>
+        </div>
+
+        <!-- Hamburger Icon -->
+        <div class="hamburger" id="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+
+        <nav id="nav">
+            <ul>
+                <li>
+                    <a href="{% url 'home' %}">
+                        <img src="{% static 'Images/home.png' %}" alt="{% trans 'Əsas Səhifə İkonu' %}"
+                            class="nav-icon">
+                        {% trans 'Əsas Səhifə' %}
+                    </a>
+                </li>
+                <li>
+                    <a href="{% url 'services' %}">
+                        <img src="{% static 'Images/maintenance.png' %}" alt="{% trans 'Xidmətlər İkonu' %}"
+                            class="nav-icon">
+                        {% trans 'Xidmətlər' %}
+                    </a>
+                </li>
+                <li>
+                    <a href="{% url 'questions' %}">
+                        <img src="{% static 'Images/conversation.png' %}" alt="{% trans 'Suallar İkonu' %}"
+                            class="nav-icon">
+                        {% trans 'Suallar' %}
+                    </a>
+                </li>
+                <li>
+                    <a href="{% url 'contact' %}">
+                        <img src="{% static 'Images/phone.png' %}" alt="{% trans 'Əlaqə İkonu' %}" class="nav-icon">
+                        {% trans 'Əlaqə' %}
+                    </a>
+                </li>
+            </ul>
+        </nav>
+
+    </header>
+
+
+    <!-- navbar -->
+
+
+
+    <section class="faq-section">
+        <h2>{% trans "Ən Çox Verilən Suallar" %}</h2>
+        <div class="faq-container">
+            <div class="faq-questions">
+                {% for category in faq_categories %}
+                <div class="faq-category">
+                    {% if category.active_faqs %}
+                    {% for question in category.active_faqs %}
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            {% if forloop.first and category.name == "Texniki Problemlər" %}
+                            Bu çox uzun bir sualdır ki, burada sözlər çoxdur və bir sətirdə yerləşmir, ona görə də aşağı
+                            düşüb yeni sətirdən davam etməlidir.
+                            {% else %}
+                            {{ question.question }}
+                            {% endif %}
+                            <span class="toggle-icon">+</span>
+                        </div>
+                        <div class="faq-answer">
+                            {% if forloop.first and category.name == "Texniki Problemlər" %}
+                            Bu bir cavabdır.
+                            {% else %}
+                            {{ question.answer }}
+                            {% endif %}
+                        </div>
+                    </div>
+                    {% endfor %}
+                    {% else %}
+                    <p class="no-questions">{% trans "Bu kateqoriyada suallar yoxdur." %}</p>
+                    {% endif %}
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+
+
+   <section class="message-section">
+        <h2>{% trans "Bizə Mesaj Göndərin" %}</h2>
+        <form class="contact-form" method="POST" action="{% url 'contactmessage' %}">
+            {% csrf_token %}
+            <input type="text" name="name" placeholder="{% trans 'Adınız' %}" required>
+            <input type="email" name="email" placeholder="{% trans 'Email ünvanınız' %}" required>
+            <textarea name="message" rows="5" placeholder="{% trans 'Mesajınız...' %}" required></textarea>
+            <button type="submit">{% trans "Göndər" %}</button>
+        </form>
+    </section>
+    <footer class="site-footer">
+        <div class="footer-content">
+            <p>&copy; 2025 Fixbit - Bütün hüquqlar qorunur.</p>
+            <nav class="footer-nav">
+                <a href="{% url 'home' %}">Əsas səhifə</a>
+                <a href="{% url 'services' %}">Xidmətlər</a>
+                <a href="{% url 'questions' %}">Suallar</a>
+                <a href="{% url 'contact' %}">Əlaqə</a>
+            </nav>
+        </div>
+    </footer>
+    </div>
+</body>
+<script>
+    // Category switching
+    document.querySelectorAll('.category-link').forEach(link => {
+        link.addEventListener('click', (e) => {
+            e.preventDefault(); // Prevent default anchor behavior
+            // Remove active class from all category links
+            document.querySelectorAll('.category-link').forEach(l => l.classList.remove('active'));
+            link.classList.add('active');
+
+            const categoryId = link.getAttribute('data-category');
+
+            // Hide all FAQ categories and show the selected one
+            document.querySelectorAll('.faq-category').forEach(category => {
+                category.classList.add('hidden');
+                if (category.id === `category-${categoryId}`) {
+                    category.classList.remove('hidden');
+                }
+            });
+        });
+    });
+
+    // Question toggling
+    document.querySelectorAll('.faq-question').forEach(question => {
+        question.addEventListener('click', () => {
+            const item = question.parentElement;
+            item.classList.toggle('active');
+            const toggleIcon = question.querySelector('.toggle-icon');
+            toggleIcon.textContent = item.classList.contains('active') ? '−' : '+';
+        });
+    });
+</script>
+
+<script>
+    // Toggle the mobile menu visibility when hamburger is clicked
+    function toggleMobileMenu() {
+        const menu = document.getElementById('mobileMenu');
+        menu.classList.toggle('show');
+    }
+
+    // Close the mobile menu when a link is clicked
+    document.querySelectorAll('.mobile-menu a').forEach(link => {
+        link.addEventListener('click', () => {
+            const menu = document.getElementById('mobileMenu');
+            menu.classList.remove('show');  // Hide the menu when any link is clicked
+        });
+    });
+
+</script>
+<script>
+    const hamburger = document.getElementById("hamburger");
+    const nav = document.getElementById("nav");
+
+    hamburger.addEventListener("click", () => {
+        nav.classList.toggle("active");
+    });
+</script>
+
+
+</html>
