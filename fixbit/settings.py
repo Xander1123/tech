@@ -7,7 +7,7 @@ load_dotenv()  # .env faylını oxu
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = os.environ.get('SECRET_KEY', 'default-secret-key')  # Əgər tapmasa default istifadə edir
-DEBUG = False
+DEBUG = os.getenv("DEBUG", "False") == "True"
 
 ALLOWED_HOSTS = ['*']
 
